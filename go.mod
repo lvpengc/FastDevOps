@@ -1,4 +1,4 @@
-module golibs
+module github.com/lyupengpublish/golibs
 
 go 1.13
 
