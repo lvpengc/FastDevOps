@@ -1,4 +1,4 @@
-package architecture
+package foundation
 import (
 	"fmt"
 	"golibs/myutils"
