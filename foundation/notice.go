@@ -1,7 +1,7 @@
 package foundation
 import (
 	"fmt"
-	"golibs/myutils"
+	"github.com/lyupengpublish/golibs/myutils"
 )
 import "github.com/aliyun/alibaba-cloud-sdk-go/services/dysmsapi"
 //邮件发送
