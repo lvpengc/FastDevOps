@@ -13,7 +13,7 @@ func SendMail(user string ,password string,to []string,cc []string,bcc []string,
 }
 
 //短信服务
-func SendSMS(phone string,message string,accessKeyId string ,accessSecret string,signName string,templateCode string) string {
+func SendSMS(phone string,message string,accessKeyId string ,accessSecret string,signName string,templateCode string) (string,error) {
 	client, err := dysmsapi.NewClientWithAccessKey("cn-hangzhou", accessKeyId, accessSecret)
 	request := dysmsapi.CreateSendSmsRequest()
 	request.Scheme = "https"
@@ -25,5 +25,5 @@ func SendSMS(phone string,message string,accessKeyId string ,accessSecret string
 	if err != nil {
 		fmt.Print(err.Error())
 	}
-	return response.Message
+	return response.Message,err
 }
