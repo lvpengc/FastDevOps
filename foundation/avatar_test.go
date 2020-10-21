@@ -6,6 +6,6 @@ import (
 
 func Test_ge(t *testing.T)  {
 
-	GeneraterAvater()
+	GenerateAvatar()
 
 }
