@@ -8,7 +8,6 @@ import (
 	"image/color"
 	"image/draw"
 	"image/png"
-	"io/ioutil"
 	"os"
 
 	"github.com/golang/freetype"
@@ -23,7 +22,7 @@ type FontCenterCalculator interface {
 type AvatarBuilder struct {
 	W        int
 	H        int
-	fontfile string
+	fontbyte []byte
 	fontsize float64
 	bg       color.Color
 	fg       color.Color
@@ -31,14 +30,13 @@ type AvatarBuilder struct {
 	calc     FontCenterCalculator
 }
 
-func NewAvatarBuilder(fontfile string, calc FontCenterCalculator) *AvatarBuilder {
+func NewAvatarBuilder(fontbyte []byte, calc FontCenterCalculator) *AvatarBuilder {
 	ab := &AvatarBuilder{}
-	ab.fontfile = fontfile
+	ab.fontbyte = fontbyte
 	ab.bg, ab.fg = color.White, color.Black
 	ab.W, ab.H = 200, 200
 	ab.fontsize = 95
 	ab.calc = calc
-
 	return ab
 }
 
@@ -135,11 +133,7 @@ func (ab *AvatarBuilder) hexToRGBA(h uint32) *color.RGBA {
 
 func (ab *AvatarBuilder) buildDrawContext(rgba *image.RGBA) error {
 	// Read the font data.
-	fontBytes, err := ioutil.ReadFile(ab.fontfile)
-	if err != nil {
-		return errors.New("error when open font file:" + err.Error())
-	}
-
+	fontBytes:=ab.fontbyte
 	f, err := freetype.ParseFont(fontBytes)
 	if err != nil {
 		return errors.New("error when parse font file:" + err.Error())
