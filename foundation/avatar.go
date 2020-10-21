@@ -9,7 +9,7 @@ var colors = []uint32{
 }
 //生成头像的方式
 func GenerateAvatar(width int,height int,content string)( []byte,error) {
-	ab := calc.NewAvatarBuilder("../static/SourceHanSansSC-Medium.ttf", &calc.SourceHansSansSCMedium{})
+	ab := calc.NewAvatarBuilder("SourceHanSansSC-Medium.ttf", &calc.SourceHansSansSCMedium{})
 	ab.SetBackgroundColorHex(colors[3])
 	ab.SetFrontgroundColor(color.White)
 	ab.SetFontSize(80)
